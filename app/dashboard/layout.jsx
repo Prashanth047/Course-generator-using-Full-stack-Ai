@@ -1,6 +1,7 @@
 import React from 'react'
-import Sidebar from './_components/Sidebar'
+import Sidbar from './_components/Sidbar'
 import SidBar from './_components/SidBar'
+import Header from './_components/Header'
 
 
 function DashboardLayout({children}) {
@@ -11,7 +12,11 @@ function DashboardLayout({children}) {
         </div>
         
         <div className='md:ml-64 p-10'>
-        {children}
+          <Header/>
+          <div className='p-10'>
+          {children}
+          </div>
+        
         </div>
       
     </div>
