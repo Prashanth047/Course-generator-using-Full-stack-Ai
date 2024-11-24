@@ -1,4 +1,4 @@
-import {pgTable,serial,json,varchar} from "drizzle-orm/pg-core"
+import {pgTable,serial,json,varchar,integer} from "drizzle-orm/pg-core"
 
 export const CourseList=pgTable('courseList',{
     id:serial('id').primaryKey(),
@@ -12,4 +12,12 @@ export const CourseList=pgTable('courseList',{
     userName:varchar('username'),
     userProfileImage:varchar('userProfileImage')
 
+})
+
+export const Chapters=pgTable('chapters',{
+    id:serial('id').primaryKey(),
+    courseId:varchar('courseId').notNull(),
+    chapterId:integer('chapterId').notNull(),
+    content:json('content').notNull(),
+    videoId:varchar('videoId').notNull()
 })
