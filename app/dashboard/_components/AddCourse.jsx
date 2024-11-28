@@ -1,11 +1,15 @@
 "use client"
+import { UserCourseListContext } from '@/app/_context/UserCourseListContext';
 import { Button } from '@/components/ui/button';
 import { useUser } from '@clerk/nextjs'
 import Link from 'next/link';
-import React from 'react'
+import React, { useContext } from 'react'
 
 function AddCourse() {
     const {user}=useUser();
+
+    const {userCourseList,setUserCourseList}=useContext(UserCourseListContext);{/**delete this to undo subscription */}
+
   return (
     <div className='flex items-center justify-between'>
       <div>
@@ -16,7 +20,7 @@ function AddCourse() {
             Create new Courses with AI
         </p>
       </div>
-      <Link href={'/create-course'}>
+      <Link href={userCourseList>=5? 'dashboard/upgrade':'/create-course'}> {/**delete that condition and keep only create-course route to undo subscription */}
       <Button>+ Create AI Course</Button>
       </Link>
     </div>

@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useContext } from 'react'
 import Image from 'next/image'
 import { HiHome } from "react-icons/hi2";
 import { HiSearchCircle } from "react-icons/hi";
@@ -9,9 +9,14 @@ import { HiMiniPower } from "react-icons/hi2";
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Progress } from '@/components/ui/progress';
+import { UserCourseListContext } from '@/app/_context/UserCourseListContext';
+import UserCourseList from './UserCourseList';
+import { useClerk } from '@clerk/nextjs';
 
 
 function SidBar() {
+    const {userCourseList,setUserCourseList}=useContext(UserCourseListContext);
+    const {signOut}=useClerk();
 
     const Menu=[
         {
@@ -27,21 +32,15 @@ function SidBar() {
             icon:<HiSearchCircle/>,
             path:"/dashboard/explore"
 
-        },
-        {
-            id:'3',
-            name:"Upgrade",
-            icon:<HiCurrencyRupee/>,
-            path:"/dashboard/upgrade"
-
-        },
-        {
+        }
+        
+        /** 
             id:'4',
             name:"Logout",
             icon:<HiMiniPower/>,
             path:"/dashboard/logout"
-
-        }
+                */
+        
 
     ];
     const path=usePathname();
@@ -49,7 +48,7 @@ function SidBar() {
   return (
     
       <div className='fixed h-full md:w-64 p-5 shadow-md'>
-      <Image src={'/logo.svg'} width={160} height={100} alt="iamge"/>
+      <Image src={'/mainlogo.svg'} width={160} height={100} alt="iamge"/>
       <hr className='my-5'></hr>
 
             <ul>
@@ -63,11 +62,14 @@ function SidBar() {
             </div>
             </Link>
                 ))}
+                
             </ul>
+            
+           
 
             <div className='absolute bottom-10 w-[80%]'>
-            <Progress value={33} />
-            <h2 className='text-sm my-2'>3 out of 5 courses</h2>
+            <Progress value={(userCourseList?.length/5)*100} />
+            <h2 className='text-sm my-2'>{userCourseList?.length} out of 5 courses</h2>
             <h2 className='text-xs text-gray-500'>Upgrade plan</h2>
 
             </div>
