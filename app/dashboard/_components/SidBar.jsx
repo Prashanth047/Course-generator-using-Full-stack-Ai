@@ -68,8 +68,8 @@ function SidBar() {
            
 
             <div className='absolute bottom-10 w-[80%]'>
-            <Progress value={(userCourseList?.length/5)*100} />
-            <h2 className='text-sm my-2'>{userCourseList?.length} out of 5 courses</h2>
+            <Progress value={(userCourseList?.length/10)*100} />
+            <h2 className='text-sm my-2'>{userCourseList?.length} out of 10 courses</h2>
             <h2 className='text-xs text-gray-500'>Upgrade plan</h2>
 
             </div>

@@ -8,6 +8,7 @@ const getVideos=async(query)=>{
         q:query,
         maxResults:2,
         type:'video',
+        videoDuration: 'medium',
         key:process.env.NEXT_PUBLIC_YOUTUBE_API_KEY
     }
 
